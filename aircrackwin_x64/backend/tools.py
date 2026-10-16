@@ -29,7 +29,7 @@ class ToolsBackend(Backend):
     demo = False
 
     def __init__(self):
-        self.workdir = tempfile.mkdtemp(prefix="airscope-")
+        self.workdir = tempfile.mkdtemp(prefix="aircrackwin-x64-")
 
     # ---------- interfaces ----------
     def list_interfaces(self):

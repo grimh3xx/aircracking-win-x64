@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Gera airscope/logo_data.py a partir de tools/logo_grid.png (1 px = 1 bloco)."""
+"""Gera aircrackwin_x64/logo_data.py a partir de tools/logo_grid.png (1 px = 1 bloco)."""
 import sys
 from PIL import Image
 
@@ -35,4 +35,4 @@ def main(src, dst):
         f.write("]\n")
     print(f"{dst}: {w}x{h}, paleta {len(palette)}, icone<{split}, word>={word_start}")
 
-main("tools/logo_grid.png","airscope/logo_data.py")
+main("tools/logo_grid.png","aircrackwin_x64/logo_data.py")

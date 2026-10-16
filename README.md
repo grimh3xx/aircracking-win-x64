@@ -1,6 +1,6 @@
 <div align="center">
 
-# aircrack-win-x64
+# aircrackwin-x64
 
 **Orquestrador de auditoria Wi-Fi em TUI** — captura de handshake WPA/WPA2 e crack offline
 numa interface de terminal interativa. Python puro, **zero dependências**.
@@ -16,9 +16,10 @@ numa interface de terminal interativa. Python puro, **zero dependências**.
 > em redes de terceiros sem autorização é crime (Brasil: Lei 12.737/2012; Austrália: Cybercrime
 > Act 2001; EUA: CFAA; etc.). Você é o único responsável pelo uso.
 
-O `airscope` **não reimplementa ataque nenhum** — ele orquestra as ferramentas padrão do
-`aircrack-ng` e do `hashcat` e mostra tudo numa TUI no estilo do [usbscope](https://github.com/grimh3xx/usbscope),
-com a logo da CentralTech em pixel-art. É um `wifite` com UX caprichada, basicamente.
+O `aircrackwin-x64` **não reimplementa ataque nenhum** — ele orquestra as ferramentas padrão do
+`aircrack-ng` e do `hashcat` e mostra tudo numa TUI no estilo do
+[usbscope](https://github.com/grimh3xx/usbscope), com a logo da CentralTech em pixel-art. É um
+`wifite` com UX caprichada, basicamente.
 
 ## Fluxo
 
@@ -48,15 +49,25 @@ Zero dependências Python — só a stdlib. Precisa de **Python 3.8+** e, pro mo
 ferramentas externas abaixo.
 
 ```bash
-git clone https://github.com/grimh3xx/airscope
-cd airscope
+git clone https://github.com/grimh3xx/aircracking-win-x64
+cd aircracking-win-x64
 
 # modo demo (qualquer SO, sem hardware nem root) — pra ver a interface:
-python3 -m airscope --demo
+python3 -m aircrackwin_x64 --demo
 
 # modo real (Linux, root):
-sudo python3 -m airscope
-sudo python3 -m airscope --wordlist /usr/share/wordlists/rockyou.txt
+sudo python3 -m aircrackwin_x64
+sudo python3 -m aircrackwin_x64 --wordlist /usr/share/wordlists/rockyou.txt
+```
+
+### Windows (.exe)
+
+Dá pra gerar um executável standalone com PyInstaller (só roda o `--demo`; a auditoria real é Linux):
+
+```powershell
+pip install pyinstaller
+python -m PyInstaller --onefile --name aircrackwin-x64 aircrackwin_x64_cli.py
+.\dist\aircrackwin-x64.exe
 ```
 
 ### Dependências do modo real (Linux)
@@ -66,7 +77,7 @@ sudo apt install aircrack-ng iw          # obrigatórias
 sudo apt install hashcat hcxtools        # opcionais (crack acelerado por GPU)
 ```
 
-O `airscope` checa tudo isso no boot e te diz exatamente o que falta instalar.
+O `aircrackwin-x64` checa tudo isso no boot e te diz exatamente o que falta instalar.
 
 ## Plataforma
 
@@ -78,11 +89,11 @@ O `airscope` checa tudo isso no boot e te diz exatamente o que falta instalar.
 ## Estrutura
 
 ```
-airscope/
+aircrackwin_x64/
   __main__.py        entry point, preflight (root/deps/plataforma), flags
   app.py             TUI: telas, loop interativo, gate de autorização
   banner.py          logo CentralTech em pixel-art (meio-blocos + 24-bit)
-  term.py            camada de terminal POSIX (raw mode, teclas, tela alternativa)
+  term.py            camada de terminal multiplataforma (POSIX + Windows)
   textutil.py        cor ANSI, largura de UTF-8, barra de progresso, degradê
   theme.py           cores da identidade CentralTech
   deps.py            checagem de ferramentas externas e privilégio
@@ -91,6 +102,7 @@ airscope/
     base.py          modelo: Interface, Network, CaptureState, CrackState
     tools.py         backend real — wrappers airmon/airodump/aireplay/aircrack/hashcat
     demo.py          backend sintético (--demo), sem hardware
+aircrackwin_x64_cli.py  entry point pro PyInstaller (--onefile)
 tools/
   gen_logo_py.py     regera logo_data.py a partir da logo
 ```

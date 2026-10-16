@@ -13,7 +13,7 @@ YELLOW = 0xFFC83C
 ORANGE = 0xFF9838
 SEL_BG = 0x0B2A55    # fundo da linha selecionada
 
-APP_NAME = "airscope"
+APP_NAME = "aircrackwin-x64"
 APP_TITLE = "Wi-Fi Audit Toolkit"
 VERSION = "v1.0.0"
 SITE = "centraltechpc.com"

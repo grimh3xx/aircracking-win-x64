@@ -65,7 +65,7 @@ class DemoBackend(Backend):
 
     def capture(self, iface, net, on_update, stop_event, deauth=True):
         st = CaptureState(network=net, running=True,
-                          cap_path=f"/tmp/airscope/{net.essid or net.bssid}.cap")
+                          cap_path=f"/tmp/aircrackwin-x64/{net.essid or net.bssid}.cap")
         st.clients = [Client(":".join(f"{random.randint(0,255):02X}" for _ in range(6)),
                              bssid=net.bssid, power=net.power + random.randint(-5, 5),
                              packets=random.randint(10, 200)) for _ in range(max(1, net.clients))]

@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "airscope"
+name = "aircrackwin-x64"
 version = "1.0.0"
 description = "Orquestrador de auditoria Wi-Fi em TUI (CentralTech) — handshake WPA/WPA2 + crack offline. Uso autorizado apenas."
 readme = "README.md"
@@ -20,10 +20,10 @@ classifiers = [
 
 [project.urls]
 Homepage = "https://centraltechpc.com"
-Repository = "https://github.com/grimh3xx/airscope"
+Repository = "https://github.com/grimh3xx/aircracking-win-x64"
 
 [project.scripts]
-airscope = "airscope.__main__:main"
+aircrackwin-x64 = "aircrackwin_x64.__main__:main"
 
 [tool.setuptools]
-packages = ["airscope", "airscope.backend"]
+packages = ["aircrackwin_x64", "aircrackwin_x64.backend"]
