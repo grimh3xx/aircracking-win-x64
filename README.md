@@ -5,6 +5,8 @@
 **Orquestrador de auditoria Wi-Fi em TUI** — captura de handshake WPA/WPA2 e crack offline
 numa interface de terminal interativa. Python puro, **zero dependências**.
 
+🐧 **Feito para Linux** (a captura de Wi-Fi exige monitor mode). No Windows roda só o modo `--demo` — veja [Plataforma](#plataforma--leia-isto).
+
 `CentralTech Solutions` · [centraltechpc.com](https://centraltechpc.com) · [github.com/grimh3xx](https://github.com/grimh3xx)
 
 </div>
@@ -79,12 +81,43 @@ sudo apt install hashcat hcxtools        # opcionais (crack acelerado por GPU)
 
 O `aircrackwin-x64` checa tudo isso no boot e te diz exatamente o que falta instalar.
 
-## Plataforma
+## Plataforma — leia isto
 
-- **Linux** — tudo (monitor mode, scan, captura, crack). É o alvo principal.
-- **Windows/macOS** — monitor mode na prática não existe, então só o `--demo` (interface) e,
-  se quiser, o crack offline direto no `hashcat` sobre um `.22000` já capturado. A captura em si
-  é Linux.
+**Esta ferramenta foi feita para Linux.** A captura de Wi-Fi (monitor mode, handshake, deauth)
+depende da stack de wireless do kernel Linux (`mac80211`/`cfg80211`) e das ferramentas do
+`aircrack-ng`. Isso **não existe no Windows nativo** — não é escolha do código, é limitação do
+SO e dos drivers. O AirPcap (única solução nativa de verdade pra monitor mode no Windows) foi
+descontinuado, e o Npcap só faz uma captura 802.11 muito limitada, sem injeção/deauth.
+
+| Onde | Captura real? | Como |
+|------|---------------|------|
+| **Linux / Kali** | ✅ sim | `sudo python3 -m aircrackwin_x64` (é o jeito certo) |
+| **Windows nativo** | ❌ não | só `--demo` (a interface) — monitor mode não existe |
+| **Windows + VM Kali** | ✅ sim | passa um adaptador USB pra VM (recomendado) |
+| **Windows + WSL2** | ⚠️ talvez | `usbipd` + kernel WSL com driver wireless (avançado) |
+| **macOS** | ❌ não | idem Windows |
+
+### Rodando "no Windows" de verdade
+
+Como o Windows não captura Wi-Fi, as duas rotas abaixo rodam **Linux por baixo** e usam um
+adaptador USB que suporte monitor mode (ex.: Alfa AWUS036NHA / AWUS036ACH, ou chipset RTL8812AU).
+
+**Rota A — VM Kali (recomendada, mais confiável):**
+1. Instala o VirtualBox ou VMware + uma imagem do Kali Linux.
+2. Pluga o adaptador USB Wi-Fi e faz o passthrough dele pra VM (USB settings da VM).
+3. Dentro da Kali: `sudo apt install aircrack-ng iw` e roda `sudo python3 -m aircrackwin_x64`.
+
+**Rota B — WSL2 + usbipd (avançada):**
+Passa o adaptador USB pro WSL2 com o `usbipd-win`. O script [`windows-setup.ps1`](windows-setup.ps1)
+automatiza a parte instalável (WSL2, usbipd, aircrack-ng). **Atenção:** o monitor mode só funciona
+se o kernel do WSL2 tiver o driver do teu adaptador + `mac80211` — o kernel padrão geralmente
+**não** tem, e aí precisa de um kernel WSL compilado com suporte wireless. Por isso a Rota A é mais
+garantida.
+
+### E o crack offline no Windows?
+
+Esse sim roda no Windows sem drama: se você já tem um handshake capturado (`.cap`/`.22000`),
+dá pra quebrar direto com o `hashcat` no Windows. A captura é que é Linux.
 
 ## Estrutura
 
