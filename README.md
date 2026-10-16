@@ -1,6 +1,6 @@
 <div align="center">
 
-# airscope
+# aircrack-win-x64
 
 **Orquestrador de auditoria Wi-Fi em TUI** — captura de handshake WPA/WPA2 e crack offline
 numa interface de terminal interativa. Python puro, **zero dependências**.
