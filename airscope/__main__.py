@@ -59,13 +59,22 @@ def main(argv=None):
         return 0
 
     from .app import App
-    if args.demo:
+    # Modo real so existe no Linux. Fora dele (ou no duplo-clique sem args), cai no --demo.
+    demo = args.demo
+    if not demo and not deps.is_linux():
+        print(_c("Modo real (monitor mode) so funciona no Linux — abrindo o modo --demo.", TH.YELLOW))
+        print(_c("Pra auditoria de verdade, rode numa Kali/Linux: sudo python3 -m airscope", TH.DIM))
+        print()
+        demo = True
+
+    if demo:
         from .backend.demo import DemoBackend
         backend = DemoBackend()
     else:
         if not preflight():
             print()
-            print(_c("Dica: rode `python -m airscope --demo` pra ver a interface sem hardware.", TH.DIM))
+            print(_c("Dica: rode com --demo pra ver a interface sem hardware.", TH.DIM))
+            _pause_if_windows()
             return 1
         from .backend.tools import ToolsBackend
         backend = ToolsBackend()
@@ -76,9 +85,24 @@ def main(argv=None):
         app.run()
     except KeyboardInterrupt:
         pass
+    except Exception:
+        import traceback
+        traceback.print_exc()
+        _pause_if_windows()
+        return 1
     print(T.BOLD + T.fg(TH.WHITE) + "Central" + T.fg(TH.CYAN) + "Tech" + T.RESET +
           T.fg(TH.DIM) + " · airscope — use com responsabilidade." + T.RESET)
     return 0
+
+
+def _pause_if_windows():
+    """No Windows (duplo-clique), evita a janela sumir antes de ler a mensagem."""
+    import os
+    if os.name == "nt":
+        try:
+            input("\nPressione Enter pra fechar…")
+        except (EOFError, KeyboardInterrupt):
+            pass
 
 
 if __name__ == "__main__":
