@@ -1,4 +1,4 @@
-"""Entry point: python -m airscope  [--demo] [--wordlist PATH]"""
+"""Entry point: python3 -m aircrackwin_x64  [--demo] [--wordlist PATH]"""
 import argparse
 import sys
 
@@ -15,7 +15,7 @@ def preflight():
     """Checa plataforma, privilegio e dependencias. Retorna True se pode seguir no modo real."""
     ok = True
     if not deps.is_linux():
-        print(_c("airscope precisa de Linux pro modo real (monitor mode).", TH.RED))
+        print(_c("aircrackwin-x64 precisa de Linux pro modo real (monitor mode).", TH.RED))
         print(_c("No Windows/macOS use --demo pra ver a interface, ou rode o crack offline "
                  "direto no hashcat.", TH.DIM))
         return False
@@ -44,7 +44,7 @@ def preflight():
 
 def main(argv=None):
     p = argparse.ArgumentParser(
-        prog="airscope",
+        prog="aircrackwin-x64",
         description="Orquestrador de auditoria Wi-Fi em TUI (CentralTech). Uso autorizado apenas.")
     p.add_argument("--demo", action="store_true",
                    help="roda com dados simulados, sem hardware nem root (pra testar a UI)")
@@ -55,7 +55,7 @@ def main(argv=None):
     args = p.parse_args(argv)
 
     if args.version:
-        print(f"airscope {TH.VERSION} — CentralTech Solutions")
+        print(f"{TH.APP_NAME} {TH.VERSION} — CentralTech Solutions")
         return 0
 
     from .app import App
@@ -63,7 +63,7 @@ def main(argv=None):
     demo = args.demo
     if not demo and not deps.is_linux():
         print(_c("Modo real (monitor mode) so funciona no Linux — abrindo o modo --demo.", TH.YELLOW))
-        print(_c("Pra auditoria de verdade, rode numa Kali/Linux: sudo python3 -m airscope", TH.DIM))
+        print(_c("Pra auditoria de verdade, rode numa Kali/Linux: sudo python3 -m aircrackwin_x64", TH.DIM))
         print()
         demo = True
 
@@ -91,7 +91,7 @@ def main(argv=None):
         _pause_if_windows()
         return 1
     print(T.BOLD + T.fg(TH.WHITE) + "Central" + T.fg(TH.CYAN) + "Tech" + T.RESET +
-          T.fg(TH.DIM) + " · airscope — use com responsabilidade." + T.RESET)
+          T.fg(TH.DIM) + " · aircrackwin-x64 — use com responsabilidade." + T.RESET)
     return 0
 
 
