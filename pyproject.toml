@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "airscope"
+version = "1.0.0"
+description = "Orquestrador de auditoria Wi-Fi em TUI (CentralTech) — handshake WPA/WPA2 + crack offline. Uso autorizado apenas."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "grimh3xx" }]
+keywords = ["wifi", "wpa", "pentest", "aircrack-ng", "hashcat", "tui", "security"]
+classifiers = [
+    "Environment :: Console",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: Security",
+]
+
+[project.urls]
+Homepage = "https://centraltechpc.com"
+Repository = "https://github.com/grimh3xx/airscope"
+
+[project.scripts]
+airscope = "airscope.__main__:main"
+
+[tool.setuptools]
+packages = ["airscope", "airscope.backend"]
