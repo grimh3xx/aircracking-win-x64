@@ -1,6 +1,6 @@
 <div align="center">
 
-# aircrackwin-x64
+<img src="docs/banner.svg" alt="aircrackwin-x64" width="100%">
 
 **Orquestrador de auditoria Wi-Fi em TUI** — captura de handshake WPA/WPA2 e crack offline
 numa interface de terminal interativa. Python puro, **zero dependências**.
@@ -10,6 +10,10 @@ numa interface de terminal interativa. Python puro, **zero dependências**.
 `CentralTech Solutions` · [centraltechpc.com](https://centraltechpc.com) · [github.com/grimh3xx](https://github.com/grimh3xx)
 
 </div>
+
+<p align="center"><img src="docs/demo.svg" alt="aircrackwin-x64 demo" width="100%"></p>
+<p align="center"><sub>Modo <code>--demo</code> com redes simuladas.</sub></p>
+
 
 ---
 
