@@ -1,0 +1,79 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.8", "3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Byte-compile
+        run: python -m compileall -q aircrackwin_x64 aircrackwin_x64_cli.py
+      - name: CLI smoke test
+        run: |
+          python -m aircrackwin_x64 --help
+          python -m aircrackwin_x64 --version
+
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install build && python -m build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/*
+
+  release:
+    if: github.event_name == 'push'
+    needs: [test, package]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Version
+        id: ver
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            tag="$GITHUB_REF_NAME"
+          else
+            tag="v$(grep -oP '^version = "\K[^"]+' pyproject.toml)"
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          if [[ "$GITHUB_REF" != refs/tags/* ]] && git ls-remote --exit-code --tags origin "refs/tags/$tag" >/dev/null; then
+            echo "new=false" >> "$GITHUB_OUTPUT"; echo "$tag already released"
+          else
+            echo "new=true" >> "$GITHUB_OUTPUT"; echo "new release: $tag"
+          fi
+
+      - if: steps.ver.outputs.new == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - if: steps.ver.outputs.new == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.ver.outputs.tag }}
+          target_commitish: ${{ github.sha }}
+          name: aircrackwin-x64 ${{ steps.ver.outputs.tag }}
+          files: dist/*
+          generate_release_notes: true

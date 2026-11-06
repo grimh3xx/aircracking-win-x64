@@ -7,6 +7,12 @@ numa interface de terminal interativa. Python puro, **zero dependências**.
 
 🐧 **Feito para Linux** (a captura de Wi-Fi exige monitor mode). No Windows roda só o modo `--demo` — veja [Plataforma](#plataforma--leia-isto).
 
+[![build](https://img.shields.io/github/actions/workflow/status/grimh3xx/aircracking-win-x64/build.yml?branch=main&style=flat-square&labelColor=111826&label=build)](https://github.com/grimh3xx/aircracking-win-x64/actions)
+[![release](https://img.shields.io/github/v/release/grimh3xx/aircracking-win-x64?style=flat-square&labelColor=111826&color=3B82F6)](https://github.com/grimh3xx/aircracking-win-x64/releases/latest)
+[![license](https://img.shields.io/github/license/grimh3xx/aircracking-win-x64?style=flat-square&labelColor=111826&color=22D3EE)](LICENSE)
+![python](https://img.shields.io/badge/python-3.8%2B-3B82F6?style=flat-square&labelColor=111826)
+![deps](https://img.shields.io/badge/deps-zero-22D3EE?style=flat-square&labelColor=111826)
+
 `CentralTech Solutions` · [centraltechpc.com](https://centraltechpc.com) · [github.com/grimh3xx](https://github.com/grimh3xx)
 
 </div>
