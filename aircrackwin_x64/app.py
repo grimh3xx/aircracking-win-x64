@@ -1,4 +1,4 @@
-"""aircrackwin-x64 — orquestrador de auditoria Wi-Fi em TUI. (c) CentralTech Solutions.
+"""aircrackwin-x64 — orquestrador de auditoria Wi-Fi em TUI. (c) grimh3xx.
 
 Uso autorizado apenas: so teste redes que voce possui ou tem permissao explicita
 por escrito pra auditar.
@@ -68,7 +68,7 @@ class App:
     # ---------------- ciclo ----------------
     def run(self):
         with self.term:
-            self.term.set_title("CentralTech · aircrackwin-x64")
+            self.term.set_title("grimh3xx · aircrackwin-x64")
             self.interfaces = self.b.list_interfaces()
             self._loop()
         self._stop_all_threads()

@@ -1,4 +1,4 @@
-"""Logo CentralTech em pixel-art (meio-blocos ▀▄ + cor 24-bit) e barras de cabecalho."""
+"""Logo grimh3xx em pixel-art (meio-blocos ▀▄ + cor 24-bit) e barras de cabecalho."""
 from . import textutil as T
 from . import theme as TH
 from . import logo_data as L
@@ -114,7 +114,7 @@ def best_tier(term_w, max_rows):
 def build(term_w, tier, links_on=False):
     out = []
     if tier == "text":
-        brand = (T.BOLD + T.fg(TH.WHITE) + "Central" + T.fg(TH.CYAN) + "Tech" + T.RESET +
+        brand = (T.BOLD + T.fg(TH.WHITE) + "grim" + T.fg(TH.CYAN) + "h3xx" + T.RESET +
                  T.fg(TH.ACCENT) + "  SOLUTIONS" + T.RESET)
         sub = (T.fg(TH.TEXT) + TH.APP_TITLE + T.fg(TH.DIM) + "  ·  " + TH.VERSION +
                "  ·  " + TH.SITE + T.RESET)
@@ -130,7 +130,7 @@ def build(term_w, tier, links_on=False):
 
 
 def top_bar(term_w, section):
-    left = (T.fg(TH.BLUE) + "▌" + T.BOLD + T.fg(TH.WHITE) + "Central" + T.fg(TH.CYAN) + "Tech" +
+    left = (T.fg(TH.BLUE) + "▌" + T.BOLD + T.fg(TH.WHITE) + "grim" + T.fg(TH.CYAN) + "h3xx" +
             T.RESET + T.fg(TH.DIM) + "  " + TH.APP_TITLE + T.RESET)
     if section:
         left += T.fg(TH.DIM) + "  ›  " + T.RESET + T.BOLD + section + T.RESET

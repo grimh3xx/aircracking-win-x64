@@ -12,7 +12,7 @@ _ESSIDS = [
     ("CLARO_5G_Casa", "WPA2", 36, -58, 1, False),
     ("TP-Link_4F2C", "WPA2", 11, -67, 0, True),
     ("iPhone de Daniel", "WPA3", 1, -71, 1, False),
-    ("CENTRALTECH-LAB", "WPA2", 9, -39, 2, False),
+    ("GRIMH3XX-LAB", "WPA2", 9, -39, 2, False),
     ("", "WPA2", 3, -80, 0, False),          # oculta
     ("NET_2G_Vizinho", "WPA2", 6, -83, 0, False),
     ("Starlink", "WPA2", 149, -74, 4, False),
@@ -103,7 +103,7 @@ class DemoBackend(Backend):
                 st.done = True
                 st.running = False
                 st.password = random.choice(
-                    ["familia2019", "SenhaForte!23", "vivo12345", "centraltech", "97531086"])
+                    ["familia2019", "SenhaForte!23", "vivo12345", "grimh3xx", "97531086"])
                 st.progress = hit
                 on_update(st)
                 return st

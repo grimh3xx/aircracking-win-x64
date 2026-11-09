@@ -1,4 +1,4 @@
-"""Cores e constantes da identidade CentralTech."""
+"""Cores e constantes da identidade grimh3xx."""
 
 BLUE = 0x0050FF      # azul profundo do icone
 CYAN = 0x00C8FF      # ciano do "Tech"
@@ -16,5 +16,5 @@ SEL_BG = 0x0B2A55    # fundo da linha selecionada
 APP_NAME = "aircrackwin-x64"
 APP_TITLE = "Wi-Fi Audit Toolkit"
 VERSION = "v1.0.0"
-SITE = "centraltechpc.com"
+SITE = "github.com/grimh3xx"
 GITHUB = "github.com/grimh3xx"

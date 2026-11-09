@@ -45,7 +45,7 @@ def preflight():
 def main(argv=None):
     p = argparse.ArgumentParser(
         prog="aircrackwin-x64",
-        description="Orquestrador de auditoria Wi-Fi em TUI (CentralTech). Uso autorizado apenas.")
+        description="Orquestrador de auditoria Wi-Fi em TUI (grimh3xx). Uso autorizado apenas.")
     p.add_argument("--demo", action="store_true",
                    help="roda com dados simulados, sem hardware nem root (pra testar a UI)")
     p.add_argument("--wordlist", default="/usr/share/wordlists/rockyou.txt",
@@ -55,7 +55,7 @@ def main(argv=None):
     args = p.parse_args(argv)
 
     if args.version:
-        print(f"{TH.APP_NAME} {TH.VERSION} — CentralTech Solutions")
+        print(f"{TH.APP_NAME} {TH.VERSION} — grimh3xx")
         return 0
 
     from .app import App
@@ -90,7 +90,7 @@ def main(argv=None):
         traceback.print_exc()
         _pause_if_windows()
         return 1
-    print(T.BOLD + T.fg(TH.WHITE) + "Central" + T.fg(TH.CYAN) + "Tech" + T.RESET +
+    print(T.BOLD + T.fg(TH.WHITE) + "grim" + T.fg(TH.CYAN) + "h3xx" + T.RESET +
           T.fg(TH.DIM) + " · aircrackwin-x64 — use com responsabilidade." + T.RESET)
     return 0
 

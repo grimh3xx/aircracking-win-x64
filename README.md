@@ -13,7 +13,7 @@ numa interface de terminal interativa. Python puro, **zero dependências**.
 ![python](https://img.shields.io/badge/python-3.10%2B-3B82F6?style=flat-square&labelColor=111826)
 ![deps](https://img.shields.io/badge/deps-zero-22D3EE?style=flat-square&labelColor=111826)
 
-`CentralTech Solutions` · [centraltechpc.com](https://centraltechpc.com) · [github.com/grimh3xx](https://github.com/grimh3xx)
+`grimh3xx` · [github.com/grimh3xx](https://github.com/grimh3xx) · [github.com/grimh3xx](https://github.com/grimh3xx)
 
 </div>
 
@@ -30,7 +30,7 @@ numa interface de terminal interativa. Python puro, **zero dependências**.
 
 O `aircrackwin-x64` **não reimplementa ataque nenhum** — ele orquestra as ferramentas padrão do
 `aircrack-ng` e do `hashcat` e mostra tudo numa TUI no estilo do
-[usbscope](https://github.com/grimh3xx/usbscope), com a logo da CentralTech em pixel-art. É um
+[usbscope](https://github.com/grimh3xx/usbscope), com a logo da grimh3xx em pixel-art. É um
 `wifite` com UX caprichada, basicamente.
 
 ## Fluxo
@@ -135,10 +135,10 @@ dá pra quebrar direto com o `hashcat` no Windows. A captura é que é Linux.
 aircrackwin_x64/
   __main__.py        entry point, preflight (root/deps/plataforma), flags
   app.py             TUI: telas, loop interativo, gate de autorização
-  banner.py          logo CentralTech em pixel-art (meio-blocos + 24-bit)
+  banner.py          logo grimh3xx em pixel-art (meio-blocos + 24-bit)
   term.py            camada de terminal multiplataforma (POSIX + Windows)
   textutil.py        cor ANSI, largura de UTF-8, barra de progresso, degradê
-  theme.py           cores da identidade CentralTech
+  theme.py           cores da identidade grimh3xx
   deps.py            checagem de ferramentas externas e privilégio
   logo_data.py       dados da logo (gerado de tools/logo_grid.png)
   backend/
@@ -161,5 +161,5 @@ A UI redesenha num loop com timeout, enquanto threads de fundo alimentam o estad
 ---
 
 <div align="center">
-<sub>© CentralTech Solutions — <a href="https://centraltechpc.com">centraltechpc.com</a> · ferramenta de auditoria para uso autorizado</sub>
+<sub>© grimh3xx — <a href="https://github.com/grimh3xx">github.com/grimh3xx</a> · ferramenta de auditoria para uso autorizado</sub>
 </div>
