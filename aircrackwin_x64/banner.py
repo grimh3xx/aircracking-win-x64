@@ -3,7 +3,7 @@ from . import textutil as T
 from . import theme as TH
 from . import logo_data as L
 
-HEADER_ROWS = 5
+HEADER_ROWS = 4
 
 
 def _pixel(x, y):
@@ -66,15 +66,6 @@ def _pad_for(term_w, content_w):
 def _header(left_pad, links_on):
     pad = " " * left_pad
     out = []
-    # "S O L U T I O N S"
-    sol = [" "] * L.W
-    for i, ch in enumerate("SOLUTIONS"):
-        col = L.SOLUTIONS_COL + i * 6
-        if col < len(sol):
-            sol[col] = ch
-    sol_s = "".join(sol).rstrip()
-    out.append(pad + T.fg(TH.ACCENT) + sol_s + T.RESET)
-
     rule = T.gradient(T.repeat("─", L.W), TH.BLUE, TH.CYAN)
     out.append(pad + rule)
 
@@ -114,8 +105,7 @@ def best_tier(term_w, max_rows):
 def build(term_w, tier, links_on=False):
     out = []
     if tier == "text":
-        brand = (T.BOLD + T.fg(TH.WHITE) + "grim" + T.fg(TH.CYAN) + "h3xx" + T.RESET +
-                 T.fg(TH.ACCENT) + "  SOLUTIONS" + T.RESET)
+        brand = (T.BOLD + T.fg(TH.WHITE) + "grim" + T.fg(TH.CYAN) + "h3xx" + T.RESET)
         sub = (T.fg(TH.TEXT) + TH.APP_TITLE + T.fg(TH.DIM) + "  ·  " + TH.VERSION +
                "  ·  " + TH.SITE + T.RESET)
         out.append(T.center(brand, term_w))
