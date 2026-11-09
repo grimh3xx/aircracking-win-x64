@@ -2,7 +2,7 @@
 
 BLUE = 0x0050FF      # azul profundo do icone
 CYAN = 0x00C8FF      # ciano do "Tech"
-ACCENT = 0x0096F0    # azul do "S O L U T I O N S"
+ACCENT = 0x0096F0    # azul de acento
 WHITE = 0xEBEEF5
 TEXT = 0xC8CCD6
 DIM = 0x6E7382
