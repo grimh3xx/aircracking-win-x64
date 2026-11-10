@@ -13,7 +13,7 @@ numa interface de terminal interativa. Python puro, **zero dependências**.
 ![python](https://img.shields.io/badge/python-3.10%2B-3B82F6?style=flat-square&labelColor=111826)
 ![deps](https://img.shields.io/badge/deps-zero-22D3EE?style=flat-square&labelColor=111826)
 
-`grimh3xx` · [github.com/grimh3xx](https://github.com/grimh3xx) · [github.com/grimh3xx](https://github.com/grimh3xx)
+`grimh3xx` · [github.com/grimh3xx](https://github.com/grimh3xx) ·
 
 </div>
 
