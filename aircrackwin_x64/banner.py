@@ -5,6 +5,24 @@ from . import logo_data as L
 
 HEADER_ROWS = 4
 
+BANNER_W = 63
+SHADOW_ROWS = 6
+_SHADOW = [
+    (" \u2588\u2588\u2588\u2588\u2588\u2588\u2557 \u2588\u2588\u2588\u2588\u2588\u2588\u2557 \u2588\u2588\u2557\u2588\u2588\u2588\u2557   \u2588\u2588\u2588\u2557", "\u2588\u2588\u2557  \u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2557 \u2588\u2588\u2557  \u2588\u2588\u2557\u2588\u2588\u2557  \u2588\u2588\u2557"),
+    ("\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d \u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2557 \u2588\u2588\u2588\u2588\u2551", "\u2588\u2588\u2551  \u2588\u2588\u2551\u255a\u2550\u2550\u2550\u2550\u2588\u2588\u2557\u255a\u2588\u2588\u2557\u2588\u2588\u2554\u255d\u255a\u2588\u2588\u2557\u2588\u2588\u2554\u255d"),
+    ("\u2588\u2588\u2551  \u2588\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2554\u2588\u2588\u2588\u2588\u2554\u2588\u2588\u2551", "\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551 \u2588\u2588\u2588\u2588\u2588\u2554\u255d \u255a\u2588\u2588\u2588\u2554\u255d  \u255a\u2588\u2588\u2588\u2554\u255d "),
+    ("\u2588\u2588\u2551   \u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2551\u2588\u2588\u2551\u255a\u2588\u2588\u2554\u255d\u2588\u2588\u2551", "\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551 \u255a\u2550\u2550\u2550\u2588\u2588\u2557 \u2588\u2588\u2554\u2588\u2588\u2557  \u2588\u2588\u2554\u2588\u2588\u2557 "),
+    ("\u255a\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2551  \u2588\u2588\u2551\u2588\u2588\u2551\u2588\u2588\u2551 \u255a\u2550\u255d \u2588\u2588\u2551", "\u2588\u2588\u2551  \u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2554\u255d \u2588\u2588\u2557\u2588\u2588\u2554\u255d \u2588\u2588\u2557"),
+    (" \u255a\u2550\u2550\u2550\u2550\u2550\u255d \u255a\u2550\u255d  \u255a\u2550\u255d\u255a\u2550\u255d\u255a\u2550\u255d     \u255a\u2550\u255d", "\u255a\u2550\u255d  \u255a\u2550\u255d\u255a\u2550\u2550\u2550\u2550\u2550\u255d \u255a\u2550\u255d  \u255a\u2550\u255d\u255a\u2550\u255d  \u255a\u2550\u255d"),
+]
+
+
+def _shadow(left_pad):
+    pad = " " * left_pad
+    return [pad + T.BOLD + T.fg(TH.WHITE) + a + T.fg(TH.CYAN) + b + T.RESET
+            for a, b in _SHADOW]
+
+
 
 def _pixel(x, y):
     if y < 0 or y >= L.H or x < 0:
@@ -66,12 +84,12 @@ def _pad_for(term_w, content_w):
 def _header(left_pad, links_on):
     pad = " " * left_pad
     out = []
-    rule = T.gradient(T.repeat("─", L.W), TH.BLUE, TH.CYAN)
+    rule = T.gradient(T.repeat("─", BANNER_W), TH.BLUE, TH.CYAN)
     out.append(pad + rule)
 
     title = (T.BOLD + T.fg(TH.WHITE) + TH.APP_TITLE + T.RESET +
              T.fg(TH.DIM) + "  ·  " + TH.VERSION + T.RESET)
-    out.append(pad + T.center(title, L.W))
+    out.append(pad + T.center(title, BANNER_W))
 
     def lnk(host, url):
         return (T.fg(TH.CYAN) + "► " + T.fg(TH.TEXT) + T.UNDERLINE +
@@ -79,21 +97,21 @@ def _header(left_pad, links_on):
 
     links = (lnk(TH.SITE, "https://" + TH.SITE) + "        " +
              lnk(TH.GITHUB, "https://" + TH.GITHUB))
-    out.append(pad + T.center(links, L.W))
+    out.append(pad + T.center(links, BANNER_W))
     out.append(pad + rule)
     return out
 
 
 def rows_for(tier):
     if tier == "full":
-        return (L.H + 1) // 2 + HEADER_ROWS
+        return SHADOW_ROWS + HEADER_ROWS
     if tier == "word":
-        return (L.H - L.WORD_START + 1) // 2 + HEADER_ROWS
+        return SHADOW_ROWS + HEADER_ROWS
     return 3
 
 
 def best_tier(term_w, max_rows):
-    if term_w < L.W:
+    if term_w < BANNER_W:
         return "text"
     if max_rows >= rows_for("full"):
         return "full"
@@ -113,8 +131,8 @@ def build(term_w, tier, links_on=False):
         w = term_w - 4 if term_w > 4 else term_w
         out.append("  " + T.gradient(T.repeat("─", w), TH.BLUE, TH.CYAN))
         return out
-    pad = _pad_for(term_w, L.W)
-    out.extend(_render_rows(0 if tier == "full" else L.WORD_START, L.H, pad))
+    pad = _pad_for(term_w, BANNER_W)
+    out.extend(_shadow(pad))
     out.extend(_header(pad, links_on))
     return out
 
