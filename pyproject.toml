@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aircrackwin-x64"
-version = "1.0.0"
+version = "1.0.1"
 description = "Orquestrador de auditoria Wi-Fi em TUI (grimh3xx) — handshake WPA/WPA2 + crack offline. Uso autorizado apenas."
 readme = "README.md"
 requires-python = ">=3.8"
